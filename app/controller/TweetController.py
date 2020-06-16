@@ -74,7 +74,6 @@ def detect():
         pac = pickle.load(pickle_in)
         tfidf = open('tfidf.pickle', 'rb')
         tfidf_vectorizer = pickle.load(tfidf)
-
         input_data = [tweet.text.rstrip()]
         # transforming input
         tfidf_test = tfidf_vectorizer.transform(input_data)
@@ -82,7 +81,7 @@ def detect():
         y_pred = pac.predict(tfidf_test)
 
         result = y_pred[0]
-        tes = store(tweet, url, result)
+        tes = store(tweet.text, url, result)
         if tes :
             print('sudah disimpan')
         

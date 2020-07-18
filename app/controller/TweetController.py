@@ -4,11 +4,12 @@ from app.lib import twitter
 from flask import request, url_for, Markup
 from app import db
 import pickle
+from sqlalchemy import desc
 
 
 def index() :
     try :
-        tweets = Tweets.query.all()
+        tweets = Tweets.query.all().order_by(desc('created_at'))
         data = transform(tweets)
         return response.ok(data, "")
     except Exception as e :

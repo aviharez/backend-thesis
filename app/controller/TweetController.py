@@ -52,11 +52,13 @@ def store(tweet, url, result):
 
         check = Tweets.query.filter_by(url=url).first()
         if not check:
+            print("data tidak ada di db")
             tweets = Tweets(tweet=tweet, url=url, result=result)
             db.session.add(tweets)
             db.session.commit()
             return True
         else :
+            print("ada di db")
             return False
 
     except Exception as e :
@@ -75,6 +77,8 @@ def detect():
         tfidf = open('tfidf.pickle', 'rb')
         tfidf_vectorizer = pickle.load(tfidf)
         input_data = [tweet.text.rstrip()]
+        print(tweet)
+        print(tweet.text)
         print(input_data)
         # transforming input
         tfidf_test = tfidf_vectorizer.transform(input_data)

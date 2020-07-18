@@ -75,6 +75,7 @@ def detect():
         tfidf = open('tfidf.pickle', 'rb')
         tfidf_vectorizer = pickle.load(tfidf)
         input_data = [tweet.text.rstrip()]
+        print(input_data)
         # transforming input
         tfidf_test = tfidf_vectorizer.transform(input_data)
         # predicting the input

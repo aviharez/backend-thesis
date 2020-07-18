@@ -9,11 +9,8 @@ from sqlalchemy import desc
 
 def index() :
     try :
-        tweets = Tweets.query.all()
-        res = []
-        for x in range(len(tweets), 0, -1):
-            res.append(tweets[x])
-        data = transform(res)
+        tweets = Tweets.query.order_by(desc('created_at')).limit(10)
+        data = transform(tweets)
         return response.ok(data, "")
     except Exception as e :
         print(e)

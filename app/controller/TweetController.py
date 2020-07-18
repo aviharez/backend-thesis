@@ -81,11 +81,12 @@ def detect():
         y_pred = pac.predict(tfidf_test)
 
         result = y_pred[0]
+        
         tes = store(tweet.text, url, result)
         if tes :
             print('sudah disimpan')
         
-        data = customTransform(tweet, result)
+        data = customTransform(tweet, result, id)
 
         return response.ok(data, 'Success')
 
@@ -93,13 +94,13 @@ def detect():
         print(e)
         return response.badRequest([], 'Failed')
 
-def customTransform(tweet, result):
+def customTransform(tweet, result, id):
     data = {
         'tweet' : tweet.text,
         'result' : result,
         'name' : tweet.user.name,
         'screen_name' : tweet.user.screen_name,
         'profile_pic' : tweet.user.profile_image_url_https,
-        'id' : tweet.id
+        'id' : id
     }
     return data

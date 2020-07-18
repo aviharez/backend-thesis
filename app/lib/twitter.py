@@ -10,5 +10,5 @@ auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 def get_tweet(id) :
-    tweet = api.get_status(id, tweet_mode="extended")
+    tweet = api.get_status(id)
     return tweet
